@@ -1,0 +1,75 @@
+
+<form class="categorised-search-container" [ngClass]="panelClass">
+  <div class="category-container">
+      <mat-form-field class="search-category">
+        <input #categoryInput
+               type="text"
+               placeholder="Enter {{category.label}}"
+               aria-label="text"
+               matInput
+               required
+               [formControl]="categoryFormControl"
+               [matAutocomplete]="categoryAutoComplete">
+          <mat-autocomplete #categoryAutoComplete="matAutocomplete" (optionSelected)="onSelectCategory($event)">
+          <mat-option *ngFor="let item of filteredCategoryList"
+                      [value]="item"
+                      [matTooltip]="item"
+                      [matTooltipClass]="'category-option-tooltip'"
+                      [matTooltipPosition]="getCategoryToolTipPosition()"
+                      [matTooltipShowDelay]="getCategoryTooltipShowDelay()"
+                      [matTooltipHideDelay]="getCategoryTooltipHideDelay()">
+            {{item}}
+          </mat-option>
+        </mat-autocomplete>        &nbsp;
+        <button
+          mat-button
+          *ngIf="categoryInput.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearCategorySelection()">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-error *ngIf="categoryFormControl.touched && currentSelectedCategory!==categoryFormControl.value">
+          Please choose a valid {{category.label}}
+      </mat-error>
+  </div>
+
+  <div class="subCategory-container">
+    <mat-form-field class="search-subCategory">
+      <input #subCategoryAutocompleteInput
+             type="text"
+             placeholder="Enter {{subCategory.label}}"
+             aria-label="Number"
+             matInput
+             required
+             [formControl]="subCategoryFormControl"
+             [matAutocomplete]="modelAutoComplete">       &nbsp;
+      <button
+        mat-button
+        *ngIf="subCategoryAutocompleteInput.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearSubCategorySelection()">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-autocomplete #modelAutoComplete="matAutocomplete" (optionSelected)="onSubCategorySelected($event)" >
+        <mat-option *ngFor="let item of filteredSubCategoryList"
+                    [value]="item"
+                    [matTooltip]="item"
+                    [matTooltipClass]="'category-option-tooltip'"
+                    [matTooltipPosition]="getSubCategoryToolTipPosition()"
+                    [matTooltipShowDelay]="getSubCategoryTooltipShowDelay()"
+                    [matTooltipHideDelay]="getSubCategoryTooltipHideDelay()">
+          {{item}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+      <mat-error *ngIf="subCategoryFormControl.touched && currentSelectedSubCategory!==subCategoryFormControl.value">
+          Please choose a valid {{subCategory.label}}
+      </mat-error>
+  </div>
+
+</form>

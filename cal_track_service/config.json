@@ -1,0 +1,32 @@
+{
+  "appName": "cal_track_service",
+  "port": 5000,
+  "views": "views",
+  "viewEngine": "view engine",
+  "viewEngineName": "ejs",
+  "public": "public",
+  "dbConfig": {
+    "connection": {
+      "poolSize": 10
+    },
+    "defaultDbProvider": "MongoDb",
+    "mongoDb": {
+      "poolSize": 10,
+      "defaultDb": "mongodb://localhost:27017/calTrackDb",
+      "defaultDbName": "calTrackDb",
+      "dbCredentials": {
+        "assetAdvisorDB": {
+          "userName": "",
+          "password": ""
+        }
+      }
+    }
+  },
+  "features": {
+    "authorization": true
+  },
+  "redfortConfig": {
+    "serviceBaseUrl": "https://redfort.cartosdesign.com/api/v1"
+  },
+  "recommendationAPI": "api/v1/recommender/device/"
+}

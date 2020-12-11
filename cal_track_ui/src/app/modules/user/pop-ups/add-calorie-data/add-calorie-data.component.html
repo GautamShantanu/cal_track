@@ -1,0 +1,118 @@
+<h2 class="model-title" mat-dialog-title>Add Calorie Data for {{currentUser.name}}</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="body-container">
+
+    <div class="date-net-Calories-container">
+      <mat-card class="mat-elevation-z8">
+        <mat-form-field appearance="fill">
+          <mat-label> Date: </mat-label>
+          <input autocomplete="off" matInput placeholder="Choose Date">
+          <input matInput
+                 [min]="minDate"
+                 [max]="maxDate"
+                 [matDatepicker]="picker"
+                 [matDatepickerFilter]="filterDatesByUnavailableData"
+                 required
+                 [(ngModel)]="userCalorieData.date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-card>
+      <div class="net-calories" *ngIf="isCalorieDataValid()">
+        <b>Net Calories: </b>
+        &nbsp;<span [ngClass]="getNetCalories() > 0 ? 'surplus' : 'deficit'">{{getNetCalories()}}</span>
+      </div>
+    </div>
+
+    <mat-card class="calorie-in-area mat-elevation-z8">
+      <h2 class="calorie-in-heading-area flex-display">
+        <div class="calorie-in-title">Calories In : </div>
+        <div class="net-calorie-in" *ngIf="isNetCalorieInValid()">
+          &nbsp; {{userCalorieData.caloriesIn}}
+        </div>
+      </h2>
+      <div *ngFor="let foodData of userCalorieData.foodConsumed; let indexOfFoodData = index">
+        <div class="food-input-area">
+          <app-categorised-search class="full-width"
+                                  [category]="foodCategorySearchData"
+                                  (categorySelected)="onFoodGroupSelected($event, indexOfFoodData)"
+                                  [subCategory]="foodNameSearchData"
+                                  (subCategorySelected)="onFoodNameSelected($event, indexOfFoodData)">
+          </app-categorised-search>
+          <div class="mealType-serving-area full-width">
+            <mat-form-field appearance="fill" class="meal-type-form-field">
+              <mat-label> Meal Type: </mat-label>
+              <mat-select required [(ngModel)]="foodData.mealType">
+                <mat-option *ngFor="let mealType of mealCategories" [value]="mealType.key">{{mealType.key}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="serving-form-field">
+              <mat-label> Serving: </mat-label>
+              <input matInput autocomplete="off" type="number" [(ngModel)]="foodData.servings"
+                     (change)="servingsChanged(indexOfFoodData)"
+                     required placeholder="Enter Serving">
+              <span matSuffix>{{foodData.servingDescription}}</span>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="selected-food-details" *ngIf="isFoodValidSelection(indexOfFoodData)">
+          <span><b>Fat:</b> {{foodData.fat}}</span>
+          <span><b>Protein:</b> {{foodData.protein}}</span>
+          <span><b>Carbohydrates:</b> {{foodData.carbohydrate}}</span>
+          <span><b>Calories:</b> {{foodData.netCalories}}</span>
+        </div>
+
+      </div>
+      <div class="flex-display add-food-button-area">
+        <button mat-raised-button color="primary" (click)="addEmptyFoodTemplate()">Add Another Food</button>
+      </div>
+    </mat-card>
+
+    <mat-card class="calorie-out-area mat-elevation-z8">
+      <h2 class="calorie-out-heading-area flex-display">
+        <div class="calorie-out-title">Calories Out : </div>
+        <div class="net-calorie-out" *ngIf="isNetCalorieOutValid()">
+          &nbsp; {{userCalorieData.caloriesOut}}
+        </div>
+      </h2>
+      <div *ngFor="let activity of userCalorieData.activitiesPerformed; let indexOfActivity = index">
+        <div class="activity-input-area">
+          <app-categorised-search class="full-width"
+                                  [category]="activitySearchData"
+                                  (categorySelected)="onActivitySelected($event, indexOfActivity)"
+                                  [subCategory]="motionSearchData"
+                                  (subCategorySelected)="onMotionSelected($event, indexOfActivity)">
+          </app-categorised-search>
+          <div class="duration-area full-width">
+            <mat-form-field appearance="fill" class="duration-form-field">
+              <mat-label> Duration: </mat-label>
+              <input matInput autocomplete="off" type="number" [(ngModel)]="activity.duration"
+                     (change)="durationChanged(indexOfActivity)" required
+                     placeholder="Enter Duration">
+              <span matSuffix>hours</span>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="selected-activity-details" *ngIf="isActivityValidSelection(indexOfActivity)">
+          <span><b>MET Value per Hour:</b> {{activity.mets}}</span>
+          <span><b>Calories:</b> {{activity.netCaloriesBurned}}</span>
+        </div>
+
+      </div>
+      <div class="flex-display add-calorie-button-area">
+        <button mat-raised-button color="primary" (click)="addEmptyActivityTemplate()">Add Another Activity</button>
+      </div>
+    </mat-card>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-button [mat-dialog-close]="userCalorieData" [disabled]="!isCalorieDataValid ()" color="primary">Add</button>
+</mat-dialog-actions>

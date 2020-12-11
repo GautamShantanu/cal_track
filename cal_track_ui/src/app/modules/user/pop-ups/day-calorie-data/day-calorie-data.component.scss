@@ -1,0 +1,57 @@
+.net-calories-total {
+  font-size: 1.4rem;
+  text-align: center;
+  justify-content: center;
+  font-weight: 300;
+}
+
+.activities-table, .food-data-table {
+  width: 100%;
+  text-align: center;
+}
+
+.mat-header-cell {
+  text-align: center;
+}
+
+.mat-cell {
+  max-width: 12vw
+}
+
+.food-data-container, .activities-data-container {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.calories-in-title, .calories-out-title {
+  font-weight: 300;
+  font-size: 1.4rem;
+}
+
+.calories-in-value {
+  color: green;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.calories-out-value {
+  color: red;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.calories-in-heading, .calories-out-heading {
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+.popup-title-container {
+  justify-content: center;
+}
+
+.popup-title{
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  font-weight: 300;
+}

@@ -1,0 +1,65 @@
+::ng-deep .categorised-search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .form {
+    display:flex;
+  }
+  .search-category, .search-subCategory {
+    width: 90%;
+  }
+  .category-container, .subCategory-container {
+    width: 90%;
+  }
+}
+
+.food-input-area, .activity-input-area {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.model-title {
+  text-align: center;
+  margin-top: -1.7rem;
+}
+
+.date-net-Calories-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: -.8rem;
+}
+
+.mealType-serving-area, .duration-area {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  margin-top: .15rem;
+  .meal-type-form-field, .serving-form-field, .duration-form-field {
+    width: 47%;
+  }
+}
+
+.selected-food-details, .selected-activity-details{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.add-food-button-area, .add-calorie-button-area{
+  justify-content: flex-start;
+  padding-top: 1rem;
+}
+
+.net-calorie-in, .net-calorie-out {
+  color: lightseagreen;
+}
+
+
+mat-dialog-content {
+  max-height: 81vh;
+}
+
+.net-calories {
+  font-size: 1rem;
+  align-self: center;
+}

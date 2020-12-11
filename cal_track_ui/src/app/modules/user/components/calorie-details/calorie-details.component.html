@@ -1,0 +1,45 @@
+<div class="calorie-details-container">
+  <div class="title-container flex-display">
+    <h2 class="user-name-container"> Calorie Record for {{currentUser.name}}</h2>
+  </div>
+  <div class="bmr-container">BMR: {{basalMetabolicRate | number : '1.2-2'}}</div>
+  <button mat-raised-button color="primary" (click)="addCalorieDetails()" class="add-button">Add Calorie Data</button>
+  <table mat-table [dataSource]="calorieDetails" class="mat-elevation-z8 user-table">
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> <b>Date</b></th>
+      <td mat-cell *matCellDef="let calorieData"> {{calorieData.date | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="caloriesIn">
+      <th mat-header-cell *matHeaderCellDef> <b>Calories In</b></th>
+      <td mat-cell *matCellDef="let calorieData"> {{calorieData.caloriesIn}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="caloriesOut">
+      <th mat-header-cell *matHeaderCellDef> <b>Calories Out</b></th>
+      <td mat-cell *matCellDef="let calorieData"> {{calorieData.caloriesOut}}  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="netCalories">
+      <th mat-header-cell *matHeaderCellDef> <b>Net Calories</b></th>
+      <td mat-cell *matCellDef="let calorieData" [ngClass]="getNetCalories(calorieData) > 0 ? 'surplus' : 'deficit'">
+        {{getNetCalories(calorieData)}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="operation">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let calorieData">
+        <mat-icon color="primary"
+                  class="show-day-calorie-data-icon"
+                  (click)="showDayCalorieData(calorieData)">
+          visibility
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

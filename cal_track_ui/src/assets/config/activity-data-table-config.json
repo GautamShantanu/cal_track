@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Food Group",
+    "property": "activity"
+  },
+  {
+    "label": "Name",
+    "property": "motion"
+  },
+  {
+    "label": "Calories",
+    "property": "mets"
+  },
+  {
+    "label": "Fat",
+    "property": "duration"
+  },
+  {
+    "label": "Protein",
+    "property": "netCaloriesBurned"
+  }
+]

@@ -1,0 +1,50 @@
+<div>
+  <div class="flex-display popup-title-container">
+    <div class="popup-title"> Calorie Detail's of {{data.user.name}} - {{data.dayCalorieDetails.date | date}}</div>
+  </div>
+  <div>
+    <div class="net-calories-total flex-display">
+      Net Calories:
+      <div [ngClass]="getNetCalories() > 0 ? 'surplus' : 'deficit'">&nbsp;{{getNetCalories()}}</div>
+    </div>
+    <div class="food-data-container">
+      <div class="flex-display calories-in-heading">
+        <div class="calories-in-title">Calories In: &nbsp;</div>
+        <div class="calories-in-value">
+          +{{data.dayCalorieDetails.caloriesIn}}
+        </div>
+      </div>
+      <table mat-table [dataSource]="data.dayCalorieDetails.foodConsumed"
+             class="mat-elevation-z8 food-data-table">
+        <ng-container [matColumnDef]="foodColumn.property" *ngFor="let foodColumn of foodDataColumns">
+          <th mat-header-cell *matHeaderCellDef> <b>{{foodColumn.label}}</b></th>
+          <td mat-cell *matCellDef="let foodData">
+            {{foodData[foodColumn.property]}}
+            <ng-container *ngIf="!foodData[foodColumn.property]">
+              -
+            </ng-container>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="getFoodDataColumns()"></tr>
+        <tr mat-row *matRowDef="let row; columns: getFoodDataColumns()"></tr>
+      </table>
+    </div>
+    <div class="activities-data-container">
+      <div class="flex-display calories-out-heading">
+        <div class="calories-out-title">Calories Out: &nbsp;</div>
+        <div class="calories-out-value">
+          -{{data.dayCalorieDetails.caloriesOut}}
+        </div>
+      </div>
+      <table mat-table [dataSource]="data.dayCalorieDetails.activitiesPerformed"
+             class="mat-elevation-z8 activities-table">
+        <ng-container [matColumnDef]="activityColumn.property" *ngFor="let activityColumn of activityDataColumns">
+          <th mat-header-cell *matHeaderCellDef> <b>{{activityColumn.property}}</b></th>
+          <td mat-cell *matCellDef="let activityData"> {{activityData[activityColumn.property]}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="getActivityDataColumns()"></tr>
+        <tr mat-row *matRowDef="let row; columns: getActivityDataColumns()"></tr>
+      </table>
+    </div>
+  </div>
+</div>

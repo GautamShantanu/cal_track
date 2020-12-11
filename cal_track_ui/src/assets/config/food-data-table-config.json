@@ -1,0 +1,42 @@
+[
+  {
+    "label": "Food Group",
+    "property": "foodGroup"
+  },
+  {
+    "label": "Name",
+    "property": "name"
+  },
+  {
+    "label": "Meal Type",
+    "property": "mealType"
+  },
+  {
+    "label": "Fat",
+    "property": "fat"
+  },
+  {
+    "label": "Protein",
+    "property": "protein"
+  },
+  {
+    "label": "Carbohydrate",
+    "property": "carbohydrate"
+  },
+  {
+    "label": "Calories",
+    "property": "calories"
+  },
+  {
+    "label": "Servings",
+    "property": "servings"
+  },
+  {
+    "label": "Serving Description",
+    "property": "servingDescription"
+  },
+  {
+    "label": "Net Calories",
+    "property": "netCalories"
+  }
+]

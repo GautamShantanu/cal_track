@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-snackbar {
+  color: red;
+  border-left: .4vw solid red;
+  background-color: #ffe5e5;
+
+  .mat-button-wrapper {
+    font-size: 0.9rem;
+    color: darkslategrey;
+  }
+}
+
+.success-snackbar {
+  color: green;
+  border-left: .4vw solid darkgreen;
+  background-color: #e7ffe7;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.flex-display {
+  display: flex;
+}
+
+.surplus {
+  color: green;
+}
+
+.deficit {
+  color: red;
+}

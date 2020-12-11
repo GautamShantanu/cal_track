@@ -1,0 +1,32 @@
+.home-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.user-table {
+  width: 70%;
+  text-align: center;
+}
+
+.mat-header-cell {
+  text-align: center;
+}
+
+.icon-button {
+  cursor: pointer;
+}
+
+.add-button {
+  align-self: flex-end;
+  margin-right: 15vw;
+}
+
+.user-name {
+    text-decoration: underline;
+    cursor: pointer;
+}

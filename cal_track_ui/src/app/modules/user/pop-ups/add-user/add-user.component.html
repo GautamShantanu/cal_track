@@ -1,0 +1,48 @@
+<h2 class="model-title" mat-dialog-title>Add User</h2>
+<mat-dialog-content class="mat-typography">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label> Name: </mat-label>
+        <input autocomplete="off" matInput required [(ngModel)]="user.name" placeholder="Enter Name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Weight: </mat-label>
+        <input autocomplete="off" matInput type="number" [(ngModel)]="user.weight" required placeholder="Enter Weight">
+        <span matSuffix>kg</span>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label> Sex: </mat-label>
+        <mat-select required [(ngModel)]="user.sex">
+          <mat-option *ngFor="let sex of sexCategories" [value]="sex.key">{{sex.key}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Height: </mat-label>
+        <input matInput autocomplete="off" type="number" [(ngModel)]="user.height" required placeholder="Enter height">
+        <span matSuffix>feet</span>
+      </mat-form-field>
+    </div>
+    <div class="flex-display full-width date-area">
+      <mat-form-field appearance="fill" class="date-form-field">
+        <mat-label> Date Of Birth: </mat-label>
+        <input autocomplete="off" matInput placeholder="Choose Date">
+        <input matInput
+               [matDatepicker]="picker"
+               [min]="minDate"
+               [max]="maxDate"
+               required
+               [(ngModel)]="user.dateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-button [mat-dialog-close]="user" [disabled]="!isUserValid ()" color="primary">Add</button>
+</mat-dialog-actions>
