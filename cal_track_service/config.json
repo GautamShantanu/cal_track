@@ -15,7 +15,7 @@
       "defaultDb": "mongodb://localhost:27017/calTrackDb",
       "defaultDbName": "calTrackDb",
       "dbCredentials": {
-        "assetAdvisorDB": {
+        "calTrackDb": {
           "userName": "",
           "password": ""
         }
@@ -23,10 +23,6 @@
     }
   },
   "features": {
-    "authorization": true
-  },
-  "redfortConfig": {
-    "serviceBaseUrl": "https://redfort.cartosdesign.com/api/v1"
-  },
-  "recommendationAPI": "api/v1/recommender/device/"
+    "authorization": false
+  }
 }
